@@ -7,4 +7,6 @@ const ToDo = (title, description, dueDate, priority) => {
     }
 };
 
-export default ToDo;
+let wow = 'wow';
+
+export { ToDo, wow };
