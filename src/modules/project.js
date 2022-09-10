@@ -5,3 +5,5 @@ const Project = (title, description, dueDate, priority) => {
     const ToDos = [];
     return Object.assign({}, {ToDos}, prototype);
 };
+
+export {Project};
