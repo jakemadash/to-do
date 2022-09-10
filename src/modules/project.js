@@ -1,4 +1,4 @@
-import ToDo from 'todo.js';
+import {ToDo} from './todo.js';
 
 const Project = (title, description, dueDate, priority) => {
     const prototype = ToDo(title, description, dueDate, priority);
@@ -6,4 +6,4 @@ const Project = (title, description, dueDate, priority) => {
     return Object.assign({}, {ToDos}, prototype);
 };
 
-export {Project};
+export { Project };

@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("wow")})();
+(()=>{"use strict";document.querySelector("div").addEventListener("click",(()=>{console.log("cool")}))})();
