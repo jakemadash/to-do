@@ -1,7 +1,7 @@
-const ToDo = (title, description, dueDate, priority) => {
+const ToDo = (title, details, dueDate, priority) => {
     return {
         title: title,
-        description: description,
+        details: details,
         dueDate: dueDate,
         priority: priority,
     }
