@@ -1,1 +1,1 @@
-(()=>{"use strict";document.querySelector("div").addEventListener("click",(()=>{console.log("cool")}))})();
+(()=>{"use strict";document.querySelector(".container");const e=document.querySelector("div > div"),t=document.querySelector("form");e.addEventListener("click",(()=>{e.textContent="",t.removeAttribute("hidden")}))})();
