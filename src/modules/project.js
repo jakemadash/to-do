@@ -7,7 +7,10 @@ const Project = (() => {
         return Object.assign({}, {ToDos}, prototype);
     };
     
-    const defaultProject = newProject([], 'default');
+    const defaultProject = {
+        ToDos: [],
+        Projects: []
+    };
     
     const addToProject = () => {
         defaultProject.ToDos.push(ToDo.addToDo());
