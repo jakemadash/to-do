@@ -8,6 +8,7 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
         Project.addToDefault();
+        toDoDOM.displayNew();
     }
     toDoDOM.hideForm();
 }));

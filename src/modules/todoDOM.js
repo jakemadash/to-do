@@ -16,7 +16,16 @@ const toDoDOM = (() => {
         form.reset();
     };
 
-    return {showForm, hideForm};
+    const displayNew = () => {
+        const item = document.createElement('div');
+        const title = document.createElement('h3');
+        const titleContent = form.elements['title'].value;
+        title.textContent = titleContent;
+        item.append(title);
+        container.append(item);
+    }
+
+    return {showForm, hideForm, displayNew};
 })();
 
 export {toDoDOM};
