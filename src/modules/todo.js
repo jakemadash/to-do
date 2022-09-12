@@ -16,8 +16,9 @@ const ToDo = (() => {
         const priority = form.elements['priority'].value;
         const todo = newToDo(title, details, dueDate, priority);
         return todo;
-    } 
+    }; 
 
     return {newToDo, addToDo};
 })();
-export { ToDo };
+
+export {ToDo};
