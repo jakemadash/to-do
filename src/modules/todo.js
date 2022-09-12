@@ -9,7 +9,7 @@ const ToDo = (() => {
     };
     
     const addToDo = () => {
-        const form = document.querySelector('form.todo');
+        const form = document.querySelector('form.todo-form');
         const title = form.elements['title'].value;
         const details = form.elements['details'].value;
         const dueDate = form.elements['due-date'].value;

@@ -1,1 +1,1 @@
-const projectForm = document.querySelector('form.project');
+const projectForm = document.querySelector('form.project-form');

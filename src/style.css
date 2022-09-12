@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    height: 1.3rem;
+    width: auto;
+}
+
+.todo {
+    display: flex;
+}
