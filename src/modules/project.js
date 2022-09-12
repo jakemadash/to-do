@@ -12,12 +12,22 @@ const Project = (() => {
         Projects: []
     };
     
-    const addToProject = () => {
+    const addToDefault = () => {
         defaultProject.ToDos.push(ToDo.addToDo());
         console.log(defaultProject.ToDos);
     };
 
-    return {newProject, addToProject};
+    const addProject = () => {
+        const form = document.querySelector('form.project');
+        const title = form.elements['title'].value;
+        const details = form.elements['details'].value;
+        const dueDate = form.elements['due-date'].value;
+        const priority = form.elements['priority'].value;
+        const todo = newToDo(title, details, dueDate, priority);
+        return todo;
+    }
+
+    return {newProject, addToDefault, addProject};
 })();
 
 
