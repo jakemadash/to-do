@@ -15,8 +15,10 @@ const Project = (() => {
     };
     
     const addToDefault = () => {
-        defaultProject.ToDos.push(ToDo.addToDo());
-        count++;
+        const todo = ToDo.addToDo();
+        defaultProject.ToDos.push(todo);
+        console.log(defaultProject.ToDos);
+        return todo;
     };
 
     const addProject = () => {

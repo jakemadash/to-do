@@ -2,8 +2,8 @@ import checkbox from '../checkbox.svg';
 
 const toDoDOM = (() => {
     const container = document.querySelector('.container');
-    const add = document.querySelector('div.todo-add');
-    const form = document.querySelector('form.todo-form');
+    const add = document.querySelector('.todo-add');
+    const form = document.querySelector('.todo-form');
 
     const showForm = () => {
         add.addEventListener('click', () => {
@@ -20,7 +20,7 @@ const toDoDOM = (() => {
 
     const ToDos = [];
 
-    const displayNew = () => {
+    const displayNew = (todo) => {
         const todoList = document.querySelector('.todo-list');
         const item = document.createElement('div');
         item.classList.add('todo');
@@ -29,12 +29,16 @@ const toDoDOM = (() => {
         check.setAttribute('alt', 'checkbox');
         check.classList.add('check');
         const title = document.createElement('h5');
-        const titleContent = form.elements['title'].value;
+        const titleContent = todo.title;
         title.textContent = titleContent;
         todoList.append(item);
         item.append(check);
         item.append(title);
         ToDos.push(item);
+    }
+
+    const priorityColor = (item) => {
+
     }
 
     const complete = (check) => {

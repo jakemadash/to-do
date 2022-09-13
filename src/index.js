@@ -7,8 +7,7 @@ toDoDOM.showForm();
 const formButtons = document.querySelectorAll('button');
 formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
-        Project.addToDefault();
-        toDoDOM.displayNew();
+        toDoDOM.displayNew(Project.addToDefault());
 
         const checks = document.querySelectorAll('img.check');
         checks.forEach(check => check.addEventListener('click', () => {

@@ -11,11 +11,32 @@ img {
     margin-right: 20px;
     margin-left: 3px;
     margin-top: 3px;
-    width: 100%;
 }
 
-label, input, button {
+label {
     font-size: 1rem;
+    margin-right: 180px;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+label[for='due-date'] {
+    margin-right: 124px;
+}
+
+button, input {
+    font-size: .7rem;
+    height: 1rem;
+}
+
+#details {
+    width: 25rem;
+}
+
+#due-date {
+    margin-right: 84px;
 }
 
 img:hover, .todo-add {
@@ -25,12 +46,14 @@ img:hover, .todo-add {
 .todo {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    width: 70vw;
 }
 
 .todo-container {
     display: flex;
     flex-direction: column;
-    padding: 50px 200px;
+    padding: 50px 0 0 200px;
 }
 
 .todo:hover {
@@ -54,7 +77,7 @@ h5 {
     background-color: rgb(136, 231, 231);
     padding-bottom: 8px;
     display: flex;
-    gap: 700px;
+    gap: 400px;
 }
 
 .header h1 {
