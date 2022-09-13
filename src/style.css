@@ -8,6 +8,14 @@ img {
     width: auto;
 }
 
+img:hover {
+    cursor: pointer;
+}
+
 .todo {
     display: flex;
 }
+
+.todo:hover {
+    background-color: rgb(240, 246, 250);
+}   

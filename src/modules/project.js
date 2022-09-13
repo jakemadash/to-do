@@ -6,6 +6,8 @@ const Project = (() => {
         const ToDos = [];
         return Object.assign({}, {ToDos}, prototype);
     };
+
+    let count = 0;
     
     const defaultProject = {
         ToDos: [],
@@ -14,7 +16,7 @@ const Project = (() => {
     
     const addToDefault = () => {
         defaultProject.ToDos.push(ToDo.addToDo());
-        console.log(defaultProject.ToDos);
+        count++;
     };
 
     const addProject = () => {
@@ -27,8 +29,13 @@ const Project = (() => {
         return todo;
     }
 
-    return {newProject, addToDefault, addProject};
+    const removeFromDefault = (index) => {
+        defaultProject.ToDos.splice(index, 1);
+        console.log(defaultProject.ToDos[1]);
+    }
+
+    return {newProject, addToDefault, addProject, removeFromDefault};
 })();
 
 
-export { Project };
+export {Project};

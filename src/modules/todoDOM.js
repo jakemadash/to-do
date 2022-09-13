@@ -18,21 +18,31 @@ const toDoDOM = (() => {
         form.reset();
     };
 
+    const ToDos = [];
+
     const displayNew = () => {
         const item = document.createElement('div');
         item.classList.add('todo');
         const check = document.createElement('img');
         check.setAttribute('src', checkbox);
         check.setAttribute('alt', 'checkbox');
+        check.classList.add('check');
         const title = document.createElement('h3');
         const titleContent = form.elements['title'].value;
         title.textContent = titleContent;
         item.append(check);
         item.append(title);
         container.append(item);
+        ToDos.push(item);
     }
 
-    return {showForm, hideForm, displayNew};
+    const complete = (check) => {
+        const index = ToDos.findIndex((element) => element.innerText == check.parentElement.innerText);
+        check.parentElement.remove();
+        return index;
+    }
+
+    return {showForm, hideForm, displayNew, complete};
 })();
 
 export {toDoDOM};
