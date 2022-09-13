@@ -21,18 +21,19 @@ const toDoDOM = (() => {
     const ToDos = [];
 
     const displayNew = () => {
+        const todoList = document.querySelector('.todo-list');
         const item = document.createElement('div');
         item.classList.add('todo');
         const check = document.createElement('img');
         check.setAttribute('src', checkbox);
         check.setAttribute('alt', 'checkbox');
         check.classList.add('check');
-        const title = document.createElement('h3');
+        const title = document.createElement('h5');
         const titleContent = form.elements['title'].value;
         title.textContent = titleContent;
+        todoList.append(item);
         item.append(check);
         item.append(title);
-        container.append(item);
         ToDos.push(item);
     }
 

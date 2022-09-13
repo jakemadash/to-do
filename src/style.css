@@ -6,16 +6,31 @@
 }
 
 img {
-    height: 1.3rem;
+    height: .7rem;
     width: auto;
+    margin-right: 20px;
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 100%;
 }
 
-img:hover {
+label, input, button {
+    font-size: 1rem;
+}
+
+img:hover, .todo-add {
     cursor: pointer;
 }
 
 .todo {
     display: flex;
+    align-items: center;
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 200px;
 }
 
 .todo:hover {
@@ -27,24 +42,39 @@ h1 {
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.header, .container, .project {
+h5 {
+    font-size: 1rem;
+}
+
+.header, .project {
     padding: 20px;
 }
 
 .header {
-    font-size: 2rem;
     background-color: rgb(136, 231, 231);
     padding-bottom: 8px;
+    display: flex;
+    gap: 700px;
+}
+
+.header h1 {
+    font-size: 2rem;
 }
 
 .container {
     display: flex;
-    gap: 200px;
+    padding: 0;
 }
 
 .project {
     display: flex;
+    align-items: center;
     flex-direction: column;
-    height: 80vh;
+    height: 85vh;
+    width: 30vh;
     background-color: rgb(220, 220, 108);
+}
+
+.project-header {
+    color: gray;
 }
