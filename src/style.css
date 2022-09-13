@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    font-size: 1.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 img {
@@ -18,4 +20,31 @@ img:hover {
 
 .todo:hover {
     background-color: rgb(240, 246, 250);
+    cursor: pointer;
 }   
+
+h1 {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.header, .container, .project {
+    padding: 20px;
+}
+
+.header {
+    font-size: 2rem;
+    background-color: rgb(136, 231, 231);
+    padding-bottom: 8px;
+}
+
+.container {
+    display: flex;
+    gap: 200px;
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    background-color: rgb(220, 220, 108);
+}
