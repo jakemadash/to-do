@@ -20,6 +20,19 @@ const toDoDOM = (() => {
 
     const ToDos = [];
 
+    const priorityColor = (todo, item) => {
+        if (todo.priority == 1) {
+            item.style.backgroundColor = '#ffcccc';
+        }
+        else if (todo.priority == 2) {
+            item.style.backgroundColor = '#ffffcc';
+        }
+        else if (todo.priority == 3) {
+            item.style.backgroundColor = '#ccffcc';
+        }
+        else item.style.backgroundColor = 'white';
+    }
+
     const displayNew = (todo) => {
         const todoList = document.querySelector('.todo-list');
         const item = document.createElement('div');
@@ -31,14 +44,11 @@ const toDoDOM = (() => {
         const title = document.createElement('h5');
         const titleContent = todo.title;
         title.textContent = titleContent;
+        priorityColor(todo, item);
         todoList.append(item);
         item.append(check);
         item.append(title);
         ToDos.push(item);
-    }
-
-    const priorityColor = (item) => {
-
     }
 
     const complete = (check) => {

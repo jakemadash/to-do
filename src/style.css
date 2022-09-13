@@ -57,7 +57,7 @@ img:hover, .todo-add {
 }
 
 .todo:hover {
-    background-color: rgb(240, 246, 250);
+    filter: brightness(0.95);
     cursor: pointer;
 }   
 
