@@ -13,6 +13,13 @@ formButtons.forEach(button => button.addEventListener('click', () => {
         checks.forEach(check => check.addEventListener('click', () => {
             Project.removeFromDefault(toDoDOM.complete(check));
     }));
+
+        const items = document.querySelectorAll('.todo');
+        items.forEach(item => item.addEventListener('click', () => {
+            const index = toDoDOM.ToDos.findIndex((element) => element.innerText == item.innerText);
+            const toDo = Project.findToDo(index);
+            toDoDOM.displayDetails(item, toDo);
+        }));
     }
     toDoDOM.hideForm();
 }));

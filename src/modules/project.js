@@ -13,6 +13,10 @@ const Project = (() => {
         ToDos: [],
         Projects: []
     };
+
+    const findToDo = (index) => {
+        return defaultProject.ToDos[index];
+    }
     
     const addToDefault = () => {
         const todo = ToDo.addToDo();
@@ -36,7 +40,7 @@ const Project = (() => {
         console.log(defaultProject.ToDos[1]);
     }
 
-    return {newProject, addToDefault, addProject, removeFromDefault};
+    return {newProject, addToDefault, addProject, removeFromDefault, findToDo};
 })();
 
 
