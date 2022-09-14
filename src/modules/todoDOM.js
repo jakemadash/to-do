@@ -32,7 +32,7 @@ const toDoDOM = (() => {
         else item.style.backgroundColor = 'white';
     }
 
-    const displayNew = (todo) => {
+    const addNew = (todo) => {
         const todoList = document.querySelector('.todo-list');
         const item = document.createElement('div');
         item.classList.add('todo');
@@ -48,26 +48,29 @@ const toDoDOM = (() => {
         item.append(check);
         item.append(title);
         ToDos.push(item);
+        addDetails(item, todo);
     }
 
-    const displayDetails = (item, toDo) => {
-        if (item.container && container.getAttribute('hidden') == '') {
-            container.removeAttribute('hidden', '')
+    const addDetails = (item, toDo) => {
+        const container = document.createElement('div');
+        const details = document.createElement('p');
+        const dueDate = document.createElement('div');
+        const priority = document.createElement('div');
+        details.textContent = toDo.details;
+        dueDate.textContent = toDo.dueDate;
+        priority.textContent = toDo.priority;
+        item.append(container);
+        container.append(details, dueDate, priority);
+        container.setAttribute('hidden', '');
+    }
+
+    const displayDetails = (item) => {
+        const container = item.querySelector('div');
+        console.log(container);
+        if (container.getAttribute('hidden') == '') {
+            container.removeAttribute('hidden');
         }
-        else if (item.container && container.getAttribute('hidden') == null) {
-            container.setAttribute('hidden', '');
-        }
-        else {
-            const container = document.createElement('div');
-            const details = document.createElement('p');
-            const dueDate = document.createElement('div');
-            const priority = document.createElement('div');
-            details.textContent = toDo.details;
-            dueDate.textContent = toDo.dueDate;
-            priority.textContent = toDo.priority;
-            item.append(container);
-            container.append(details, dueDate, priority);
-        }
+        else container.setAttribute('hidden', '');
     }
 
     const complete = (check) => {
@@ -76,7 +79,7 @@ const toDoDOM = (() => {
         return index;
     }
 
-    return {showForm, hideForm, displayNew, complete, displayDetails, ToDos};
+    return {showForm, hideForm, addNew, complete, displayDetails, ToDos};
 })();
 
 export {toDoDOM};

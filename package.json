@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jakemadash/to-do/issues"
   },
-  "homepage": "https://github.com/jakemadash/to-do#readme"
+  "homepage": "https://github.com/jakemadash/to-do#readme",
+  "dependencies": {
+    "util": "^0.12.4"
+  }
 }
