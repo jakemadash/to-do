@@ -6,8 +6,6 @@ const Project = (() => {
         const ToDos = [];
         return Object.assign({}, {ToDos}, prototype);
     };
-
-    let count = 0;
     
     const defaultProject = {
         ToDos: [],

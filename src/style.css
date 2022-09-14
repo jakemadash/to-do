@@ -5,6 +5,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 img {
     height: .7rem;
     width: auto;
@@ -100,4 +104,14 @@ h5 {
 
 .project-header {
     color: gray;
+}
+
+.details-container > * {
+    font-size: .7rem;
+    margin: 0 10px;
+}
+
+
+.details-container {
+    display: flex;
 }

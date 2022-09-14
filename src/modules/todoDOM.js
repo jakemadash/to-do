@@ -49,6 +49,7 @@ const toDoDOM = (() => {
         item.append(title);
         ToDos.push(item);
         addDetails(item, todo);
+        return item;
     }
 
     const addDetails = (item, toDo) => {
@@ -56,24 +57,28 @@ const toDoDOM = (() => {
         const details = document.createElement('p');
         const dueDate = document.createElement('div');
         const priority = document.createElement('div');
-        details.textContent = toDo.details;
-        dueDate.textContent = toDo.dueDate;
-        priority.textContent = toDo.priority;
+        details.textContent = `Details: ${toDo.details}`;
+        dueDate.textContent = `Due Date: ${toDo.dueDate}`;
+        priority.textContent = `Priority: ${toDo.priority}`;
         item.append(container);
         container.append(details, dueDate, priority);
+        container.classList.add('details-container');
         container.setAttribute('hidden', '');
     }
 
     const displayDetails = (item) => {
-        const container = item.querySelector('div');
+        const container = item.querySelector('.details-container');
         console.log(container);
         if (container.getAttribute('hidden') == '') {
             container.removeAttribute('hidden');
         }
-        else container.setAttribute('hidden', '');
+        else if (container.getAttribute('hidden') == null) {
+            container.setAttribute('hidden', '');
+        }
     }
 
     const complete = (check) => {
+        console.log(check);
         const index = ToDos.findIndex((element) => element.innerText == check.parentElement.innerText);
         check.parentElement.remove();
         return index;
