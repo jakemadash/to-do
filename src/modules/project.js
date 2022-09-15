@@ -15,6 +15,17 @@ const Project = (() => {
     const findToDo = (index) => {
         return defaultProject.ToDos[index];
     }
+
+    const updateToDo = (index) => {
+        const todo = defaultProject.ToDos[index];
+        console.log(todo);
+        const form = document.querySelector('.todo-form');
+        todo.title = form.elements['title'].value;
+        todo.details = form.elements['details'].value;
+        todo.dueDate = form.elements['due-date'].value;
+        todo.priority = form.elements['priority'].value;
+        return todo;
+    }
     
     const addToDefault = () => {
         const todo = ToDo.addToDo();
@@ -38,7 +49,7 @@ const Project = (() => {
         console.log(defaultProject.ToDos);
     }
 
-    return {newProject, addToDefault, addProject, removeFromDefault, findToDo};
+    return {newProject, addToDefault, addProject, removeFromDefault, findToDo, updateToDo};
 })();
 
 

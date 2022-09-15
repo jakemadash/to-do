@@ -19,6 +19,7 @@ const toDoDOM = (() => {
     const showForm = () => {
         add.addEventListener('click', () => {
             add.textContent = '';
+            form.reset();
             form.removeAttribute('hidden');
             hideToDos();
         }
@@ -27,7 +28,6 @@ const toDoDOM = (() => {
     const hideForm = () => {
         add.textContent = '+';
         form.setAttribute('hidden', '');
-        form.reset();
         showToDos();
     };
 
@@ -62,6 +62,14 @@ const toDoDOM = (() => {
         ToDos.push(item);
         addDetails(item, todo);
         return item;
+    }
+
+    const updateToDo = () => {
+        const fields = form.querySelectorAll('input');
+        const values = Object.values(toDo);
+        for (let i = 0; i < fields.length; i++) {
+            fields[i].value = values[i];
+        }
     }
 
     const addDetails = (item, toDo) => {
