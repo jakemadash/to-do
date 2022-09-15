@@ -6,10 +6,21 @@ const toDoDOM = (() => {
     const add = document.querySelector('.todo-add');
     const form = document.querySelector('.todo-form');
 
+    const ToDos = [];
+
+    const hideToDos = () => {
+        ToDos.forEach(ToDo => ToDo.setAttribute('hidden', ''));
+    }
+
+    const showToDos = () => {
+        ToDos.forEach(ToDo => ToDo.removeAttribute('hidden'));
+    }
+
     const showForm = () => {
         add.addEventListener('click', () => {
             add.textContent = '';
             form.removeAttribute('hidden');
+            hideToDos();
         }
     )};
 
@@ -17,9 +28,8 @@ const toDoDOM = (() => {
         add.textContent = '+';
         form.setAttribute('hidden', '');
         form.reset();
+        showToDos();
     };
-
-    const ToDos = [];
 
     const priorityColor = (todo, item) => {
         if (todo.priority == 1) {
@@ -88,6 +98,7 @@ const toDoDOM = (() => {
 
     const findIndex = (toDo) => {
        let index = ToDos.findIndex((element) => element.innerText == toDo.innerText);
+       console.log(index);
        return index;
     }
 
@@ -106,6 +117,7 @@ const toDoDOM = (() => {
             index = ToDos.findIndex((element) => element.innerText == remove.innerText);
             remove.remove();
         }
+        ToDos.splice(index, 1);
         return index;
     }
 
@@ -118,7 +130,7 @@ const toDoDOM = (() => {
         }
     }
 
-    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, findIndex, ToDos};
+    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, findIndex, showToDos, hideToDos, ToDos};
 })();
 
 export {toDoDOM};

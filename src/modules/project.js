@@ -35,7 +35,7 @@ const Project = (() => {
 
     const removeFromDefault = (index) => {
         defaultProject.ToDos.splice(index, 1);
-        console.log(defaultProject.ToDos[1]);
+        console.log(defaultProject.ToDos);
     }
 
     return {newProject, addToDefault, addProject, removeFromDefault, findToDo};

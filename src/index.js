@@ -4,10 +4,11 @@ import {toDoDOM} from './modules/todoDOM.js';
 toDoDOM.showForm();
 
 const form = document.querySelector('.todo-form');
+const add = document.querySelector('.todo-add');
 
 const formButtons = document.querySelectorAll('button');
 formButtons.forEach(button => button.addEventListener('click', () => {
-    if (button.textContent == 'Submit') {
+    if (button.textContent == 'Save') {
         const toDo = Project.addToDefault();
         const toDoBox = toDoDOM.addNew(toDo);
         const container = toDoBox.querySelector('.details-container');
@@ -25,21 +26,22 @@ formButtons.forEach(button => button.addEventListener('click', () => {
         edit.addEventListener('click', () => {
             const index = toDoDOM.findIndex(toDoBox);
             const toDo = Project.findToDo(index);
+            add.setAttribute('hidden', '');
             form.removeAttribute('hidden');
+            formButtons[3].setAttribute('hidden', '');
             toDoBox.setAttribute('hidden', '')
+            toDoDOM.hideToDos();
             toDoDOM.populateForm(toDo);
-            formButtons.forEach(button => button.addEventListener('click', () => {
-                if (button.textContent == 'Submit') {
-                    toDoDOM.complete(toDoBox);
-                }
-                else {
-                    form.reset();
-                    toDoBox.removeAttribute('hidden');
-                }
+            Project.removeFromDefault(toDoDOM.complete(toDoBox));
+            formButtons[2].addEventListener('click', () => {
+                toDoDOM.showToDos();
+                console.log('ok');
             }
-        ))});
+        )});
     }
     toDoDOM.hideForm();
+    formButtons[1].removeAttribute('hidden');
+    add.removeAttribute('hidden');
 }));
 
 
