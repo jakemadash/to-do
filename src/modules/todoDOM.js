@@ -78,7 +78,6 @@ const toDoDOM = (() => {
 
     const displayDetails = (item) => {
         const container = item.querySelector('.details-container');
-        console.log(container);
         if (container.getAttribute('hidden') == '') {
             container.removeAttribute('hidden');
         }
@@ -88,20 +87,33 @@ const toDoDOM = (() => {
     }
 
     const complete = (remove) => {
-        console.log(remove);
         let index = '';
         if (remove.getAttribute('alt') == 'remove') {
             index = ToDos.findIndex((element) => element.innerText == remove.parentElement.parentElement.innerText);
             remove.parentElement.parentElement.remove();
         }
-        else {
+        else if (remove.getAttribute('alt') == 'checkbox') {
             index = ToDos.findIndex((element) => element.innerText == remove.parentElement.innerText);
             remove.parentElement.remove();
+        }
+
+        else {
+            index = ToDos.findIndex((element) => element.innerText == remove.innerText);
+            remove.remove();
         }
         return index;
     }
 
-    return {showForm, hideForm, addNew, complete, displayDetails, ToDos};
+    const populateForm = (toDo) => {
+        form.removeAttribute('hidden');
+        const fields = form.querySelectorAll('input');
+        const values = Object.values(toDo);
+        for (let i = 0; i < fields.length; i++) {
+            fields[i].value = values[i];
+        }
+    }
+
+    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, ToDos};
 })();
 
 export {toDoDOM};

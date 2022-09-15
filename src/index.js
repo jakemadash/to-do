@@ -15,6 +15,12 @@ formButtons.forEach(button => button.addEventListener('click', () => {
         removals.forEach(remove => remove.addEventListener('click', () => {
             Project.removeFromDefault(toDoDOM.complete(remove));
         }));
+        const edit = toDoBox.querySelector('.edit');
+        edit.addEventListener('click', () => {
+            const index = toDoDOM.complete(toDoBox);
+            const toDo = Project.findToDo(index);
+            toDoDOM.populateForm(toDo);
+        })
     }
     toDoDOM.hideForm();
 }));
