@@ -86,6 +86,11 @@ const toDoDOM = (() => {
         }
     }
 
+    const findIndex = (toDo) => {
+       let index = ToDos.findIndex((element) => element.innerText == toDo.innerText);
+       return index;
+    }
+
     const complete = (remove) => {
         let index = '';
         if (remove.getAttribute('alt') == 'remove') {
@@ -113,7 +118,7 @@ const toDoDOM = (() => {
         }
     }
 
-    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, ToDos};
+    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, findIndex, ToDos};
 })();
 
 export {toDoDOM};

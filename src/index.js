@@ -3,6 +3,8 @@ import {toDoDOM} from './modules/todoDOM.js';
 
 toDoDOM.showForm();
 
+const form = document.querySelector('.todo-form');
+
 const formButtons = document.querySelectorAll('button');
 formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
@@ -21,10 +23,21 @@ formButtons.forEach(button => button.addEventListener('click', () => {
         }));
         const edit = toDoBox.querySelector('.edit');
         edit.addEventListener('click', () => {
-            const index = toDoDOM.complete(toDoBox);
+            const index = toDoDOM.findIndex(toDoBox);
             const toDo = Project.findToDo(index);
+            form.removeAttribute('hidden');
+            toDoBox.setAttribute('hidden', '')
             toDoDOM.populateForm(toDo);
-        })
+            formButtons.forEach(button => button.addEventListener('click', () => {
+                if (button.textContent == 'Submit') {
+                    toDoDOM.complete(toDoBox);
+                }
+                else {
+                    form.reset();
+                    toDoBox.removeAttribute('hidden');
+                }
+            }
+        ))});
     }
     toDoDOM.hideForm();
 }));
