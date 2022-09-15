@@ -12,9 +12,20 @@
 img {
     height: .7rem;
     width: auto;
+    margin: 3px 1px;
+}
+
+.check {
     margin-right: 20px;
     margin-left: 3px;
-    margin-top: 3px;
+}
+
+.remove:hover, .edit:hover {
+    transform: scale(1.2);
+}
+
+.check:hover {
+    background-color: green;
 }
 
 label {
@@ -108,7 +119,7 @@ h5 {
 
 .details-container > * {
     font-size: .7rem;
-    margin: 0 10px;
+    margin: 0 20px;
 }
 
 

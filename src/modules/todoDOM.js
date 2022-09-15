@@ -1,4 +1,6 @@
 import checkbox from '../checkbox.svg';
+import pencil from '../pencil-outline.svg';
+import x from '../close.svg';
 
 const toDoDOM = (() => {
     const add = document.querySelector('.todo-add');
@@ -40,13 +42,13 @@ const toDoDOM = (() => {
         check.setAttribute('src', checkbox);
         check.setAttribute('alt', 'checkbox');
         check.classList.add('check');
+        check.classList.add('remove');
         const title = document.createElement('h5');
         const titleContent = todo.title;
         title.textContent = titleContent;
         priorityColor(todo, item);
         todoList.append(item);
-        item.append(check);
-        item.append(title);
+        item.append(check, title);
         ToDos.push(item);
         addDetails(item, todo);
         return item;
@@ -57,11 +59,19 @@ const toDoDOM = (() => {
         const details = document.createElement('p');
         const dueDate = document.createElement('div');
         const priority = document.createElement('div');
+        const edit = document.createElement('img');
+        const remove = document.createElement('img');
+        edit.setAttribute('src', pencil);
+        edit.setAttribute('alt', 'edit');
+        edit.classList.add('edit');
+        remove.setAttribute('src', x);
+        remove.setAttribute('alt', 'remove');
+        remove.classList.add('remove');
         details.textContent = `Details: ${toDo.details}`;
         dueDate.textContent = `Due Date: ${toDo.dueDate}`;
         priority.textContent = `Priority: ${toDo.priority}`;
         item.append(container);
-        container.append(details, dueDate, priority);
+        container.append(details, dueDate, priority, edit, remove);
         container.classList.add('details-container');
         container.setAttribute('hidden', '');
     }
@@ -77,10 +87,17 @@ const toDoDOM = (() => {
         }
     }
 
-    const complete = (check) => {
-        console.log(check);
-        const index = ToDos.findIndex((element) => element.innerText == check.parentElement.innerText);
-        check.parentElement.remove();
+    const complete = (remove) => {
+        console.log(remove);
+        let index = '';
+        if (remove.getAttribute('alt') == 'remove') {
+            index = ToDos.findIndex((element) => element.innerText == remove.parentElement.parentElement.innerText);
+            remove.parentElement.parentElement.remove();
+        }
+        else {
+            index = ToDos.findIndex((element) => element.innerText == remove.parentElement.innerText);
+            remove.parentElement.remove();
+        }
         return index;
     }
 

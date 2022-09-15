@@ -11,23 +11,14 @@ formButtons.forEach(button => button.addEventListener('click', () => {
         toDoBox.addEventListener('click', () => {
             toDoDOM.displayDetails(toDoBox);
         });
-        const check = toDoBox.querySelector('img.check');
-        check.addEventListener('click', () => {
-            Project.removeFromDefault(toDoDOM.complete(check));
-        });
+        const removals = toDoBox.querySelectorAll('.remove');
+        removals.forEach(remove => remove.addEventListener('click', () => {
+            Project.removeFromDefault(toDoDOM.complete(remove));
+        }));
     }
     toDoDOM.hideForm();
 }));
 
-// const items = document.querySelectorAll('.todo');
-// items.forEach(item => item.addEventListener('click', () => {
-//     toDoDOM.displayDetails(item);
-// }));
-
-// const checks = document.querySelectorAll('img.check');
-// checks.forEach(check => check.addEventListener('click', () => {
-//     Project.removeFromDefault(toDoDOM.complete(check));
-// }));
 
 
 
