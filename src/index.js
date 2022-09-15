@@ -8,8 +8,12 @@ formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
         const toDo = Project.addToDefault();
         const toDoBox = toDoDOM.addNew(toDo);
-        toDoBox.addEventListener('click', () => {
-            toDoDOM.displayDetails(toDoBox);
+        const container = toDoBox.querySelector('.details-container');
+        toDoBox.addEventListener('mouseover', () => {
+            container.removeAttribute('hidden');
+        });
+        toDoBox.addEventListener('mouseout', () => {
+            container.setAttribute('hidden', '');
         });
         const removals = toDoBox.querySelectorAll('.remove');
         removals.forEach(remove => remove.addEventListener('click', () => {
