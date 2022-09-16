@@ -6,7 +6,7 @@ toDoDOM.showForm();
 const form = document.querySelector('.todo-form');
 const add = document.querySelector('.todo-add');
 
-const formButtons = document.querySelectorAll('button');
+const formButtons = document.querySelectorAll('button.button');
 formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
         console.log('pop');
@@ -28,21 +28,37 @@ formButtons.forEach(button => button.addEventListener('click', () => {
             const index = toDoDOM.findIndex(toDoBox);
             const toDo = Project.findToDo(index);
             add.setAttribute('hidden', '');
-            formButtons[2].textContent = 'Save';
+            const save = document.querySelector('button[hidden]')
+            save.removeAttribute('hidden')
+            formButtons[0].setAttribute('hidden', '');
             form.removeAttribute('hidden');
             toDoBox.setAttribute('hidden', '')
             toDoDOM.hideToDos();
             toDoDOM.populateForm(toDo);
-            const save = formButtons[2];
             save.addEventListener('click', () => {
-                console.log(Project.updateToDo(index));
+                Project.updateToDo(index);
+                toDoDOM.updateToDo(toDo, toDoBox);
+                toDoDOM.hideForm();
+                add.removeAttribute('hidden');
+                save.setAttribute('hidden', '');
+                formButtons[0].removeAttribute('hidden');
+                }, {once : true});
             }
-        )});
-    }
+        )}
     toDoDOM.hideForm();
-    formButtons[2].textContent = 'Submit';
+    console.log('ok');
     add.removeAttribute('hidden');
-}));
+    }));
+
+// function saveToDo(Project, index, toDo, toDoBox, save) {
+//     Project.updateToDo(index);
+//     toDoDOM.updateToDo(toDo, toDoBox);
+//     toDoDOM.hideForm();
+//     add.removeAttribute('hidden');
+//     save.setAttribute('hidden', '');
+//     formButtons[0].removeAttribute('hidden');
+//     save.removeEventListener('click', saveToDo())
+// }
 
 
 

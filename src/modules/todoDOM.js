@@ -19,7 +19,6 @@ const toDoDOM = (() => {
     const showForm = () => {
         add.addEventListener('click', () => {
             add.textContent = '';
-            form.reset();
             form.removeAttribute('hidden');
             hideToDos();
         }
@@ -28,6 +27,7 @@ const toDoDOM = (() => {
     const hideForm = () => {
         add.textContent = '+';
         form.setAttribute('hidden', '');
+        form.reset();
         showToDos();
     };
 
@@ -64,19 +64,11 @@ const toDoDOM = (() => {
         return item;
     }
 
-    const updateToDo = () => {
-        const fields = form.querySelectorAll('input');
-        const values = Object.values(toDo);
-        for (let i = 0; i < fields.length; i++) {
-            fields[i].value = values[i];
-        }
-    }
-
     const addDetails = (item, toDo) => {
         const container = document.createElement('div');
         const details = document.createElement('p');
-        const dueDate = document.createElement('div');
-        const priority = document.createElement('div');
+        const due = document.createElement('p');
+        const priority = document.createElement('p');
         const edit = document.createElement('img');
         const remove = document.createElement('img');
         edit.setAttribute('src', pencil);
@@ -85,11 +77,11 @@ const toDoDOM = (() => {
         remove.setAttribute('src', x);
         remove.setAttribute('alt', 'remove');
         remove.classList.add('remove');
-        details.textContent = `Details: ${toDo.details}`;
-        dueDate.textContent = `Due Date: ${toDo.dueDate}`;
-        priority.textContent = `Priority: ${toDo.priority}`;
+        details.textContent = `details: ${toDo.details}`;
+        due.textContent = `due: ${toDo.due}`;
+        priority.textContent = `priority: ${toDo.priority}`;
         item.append(container);
-        container.append(details, dueDate, priority, edit, remove);
+        container.append(details, due, priority, edit, remove);
         container.classList.add('details-container');
         container.setAttribute('hidden', '');
     }
@@ -129,6 +121,19 @@ const toDoDOM = (() => {
         return index;
     }
 
+    const updateToDo = (toDo, toDoBox) => {
+        const fields = toDoBox.querySelectorAll('h5, p');
+        const keys = Object.keys(toDo);
+        const values = Object.values(toDo);
+        for (let i = 0; i < fields.length; i++) {
+            if (i == 0) {
+                fields[i].textContent = values[i];
+            }
+            else fields[i].textContent = `${keys[i]}: ${values[i]}`;
+        }
+        priorityColor(toDo, toDoBox);
+    }
+
     const populateForm = (toDo) => {
         form.removeAttribute('hidden');
         const fields = form.querySelectorAll('input');
@@ -138,7 +143,7 @@ const toDoDOM = (() => {
         }
     }
 
-    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, findIndex, showToDos, hideToDos, ToDos};
+    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, findIndex, showToDos, hideToDos, updateToDo, ToDos};
 })();
 
 export {toDoDOM};
