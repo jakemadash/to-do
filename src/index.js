@@ -9,7 +9,6 @@ const add = document.querySelector('.todo-add');
 const formButtons = document.querySelectorAll('button.button');
 formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
-        console.log('pop');
         const toDo = Project.addToDefault();
         const toDoBox = toDoDOM.addNew(toDo);
         const container = toDoBox.querySelector('.details-container');
@@ -46,19 +45,8 @@ formButtons.forEach(button => button.addEventListener('click', () => {
             }
         )}
     toDoDOM.hideForm();
-    console.log('ok');
     add.removeAttribute('hidden');
     }));
-
-// function saveToDo(Project, index, toDo, toDoBox, save) {
-//     Project.updateToDo(index);
-//     toDoDOM.updateToDo(toDo, toDoBox);
-//     toDoDOM.hideForm();
-//     add.removeAttribute('hidden');
-//     save.setAttribute('hidden', '');
-//     formButtons[0].removeAttribute('hidden');
-//     save.removeEventListener('click', saveToDo())
-// }
 
 
 

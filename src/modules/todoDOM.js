@@ -98,7 +98,6 @@ const toDoDOM = (() => {
 
     const findIndex = (toDo) => {
        let index = ToDos.findIndex((element) => element.innerText == toDo.innerText);
-       console.log(index);
        return index;
     }
 

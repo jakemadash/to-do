@@ -54,7 +54,7 @@ button, input {
     margin-right: 84px;
 }
 
-img:hover, .todo-add {
+img:hover, .todo-add, .project-add {
     cursor: pointer;
 }
 
@@ -84,7 +84,7 @@ h5 {
     font-size: 1rem;
 }
 
-.header, .project {
+.header, .project-container {
     padding: 20px;
 }
 
@@ -104,7 +104,7 @@ h5 {
     padding: 0;
 }
 
-.project {
+.project-container {
     display: flex;
     align-items: center;
     flex-direction: column;
