@@ -6,10 +6,9 @@ const Project = (() => {
         return {title, due, ToDos};
     };
     
-    const defaultProject = {
-        ToDos: [],
-        Projects: []
-    };
+    const Projects = [{title: 'Main', due: '', ToDos: []}];
+
+    const defaultProject = Projects[0];
 
     const findToDo = (index) => {
         return defaultProject.ToDos[index];

@@ -1,4 +1,4 @@
-const ProjectDOM = (() => {
+const projectDOM = (() => {
 
     const form = document.querySelector('.project-form');
     const add = document.querySelector('.project-add');
@@ -28,8 +28,26 @@ const ProjectDOM = (() => {
         showProjects();
     };
 
-    return {showForm, hideForm};
+    const addNew =(project) => {
+        const projectList = document.querySelector('.project-list');
+        const item = document.createElement('div');
+        item.classList.add('project');
+        const title = document.createElement('h5');
+        const titleContent = project.title;
+        title.textContent = titleContent;
+        projectList.append(item);
+        item.append(title);
+        Projects.push(item);
+        addDetails(item, project);
+        return item;
+    }
+
+    const addDetails = (item, project ) => {
+
+    }
+
+    return {showForm, hideForm, addNew};
 
 })();
 
-export {ProjectDOM};
+export {projectDOM};
