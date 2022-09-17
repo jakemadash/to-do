@@ -9,7 +9,8 @@ const add = document.querySelector('.todo-add');
 const formButtons = document.querySelectorAll('button.button');
 formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
-        const toDo = Project.addToDefault();
+        const currentProject = Project.findProject();
+        const toDo = Project.addToDo(currentProject);
         const toDoBox = toDoDOM.addNew(toDo);
         const container = toDoBox.querySelector('.details-container');
         toDoBox.addEventListener('mouseover', () => {
@@ -20,12 +21,12 @@ formButtons.forEach(button => button.addEventListener('click', () => {
         });
         const removals = toDoBox.querySelectorAll('.remove');
         removals.forEach(remove => remove.addEventListener('click', () => {
-            Project.removeFromDefault(toDoDOM.complete(remove));
+            Project.remove(currentProject, toDoDOM.complete(remove));
         }));
         const edit = toDoBox.querySelector('.edit');
         edit.addEventListener('click', () => {
             const index = toDoDOM.findIndex(toDoBox);
-            const toDo = Project.findToDo(index);
+            const toDo = Project.findToDo(currentProject, index);
             add.setAttribute('hidden', '');
             const save = document.querySelector('button[hidden]')
             save.removeAttribute('hidden')
@@ -35,7 +36,7 @@ formButtons.forEach(button => button.addEventListener('click', () => {
             toDoDOM.hideToDos();
             toDoDOM.populateForm(toDo);
             save.addEventListener('click', () => {
-                Project.updateToDo(index);
+                Project.updateToDo(currentProject, index);
                 toDoDOM.updateToDo(toDo, toDoBox);
                 toDoDOM.hideForm();
                 add.removeAttribute('hidden');

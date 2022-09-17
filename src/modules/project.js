@@ -8,14 +8,18 @@ const Project = (() => {
     
     const Projects = [{title: 'Main', due: '', ToDos: []}];
 
-    const defaultProject = Projects[0];
-
-    const findToDo = (index) => {
-        return defaultProject.ToDos[index];
+    const findToDo = (project, index) => {
+        return project.ToDos[index];
     }
 
-    const updateToDo = (index) => {
-        const todo = defaultProject.ToDos[index];
+    const findProject = () => {
+        const header = document.querySelector('.project-header');
+        const index = Projects.findIndex((element) => element.title == header.textContent);
+        return Projects[index];
+    }
+
+    const updateToDo = (project, index) => {
+        const todo = project.ToDos[index];
         const form = document.querySelector('.todo-form');
         todo.title = form.elements['title'].value;
         todo.details = form.elements['details'].value;
@@ -24,9 +28,9 @@ const Project = (() => {
         return todo;
     }
     
-    const addToDefault = () => {
+    const addToDo = (project) => {
         const todo = ToDo.addToDo();
-        defaultProject.ToDos.push(todo);
+        project.ToDos.push(todo);
         return todo;
     };
 
@@ -35,16 +39,15 @@ const Project = (() => {
         const title = form.elements['title'].value;
         const due = form.elements['due-date'].value;
         const project = newProject(title, due);
-        defaultProject.Projects.push(project);
-        console.log(defaultProject.Projects);
+        Projects.push(project);
         return project;
     }
 
-    const removeFromDefault = (index) => {
-        defaultProject.ToDos.splice(index, 1);
+    const remove = (project, index) => {
+        project.ToDos.splice(index, 1);
     }
 
-    return {newProject, addToDefault, addProject, removeFromDefault, findToDo, updateToDo};
+    return {newProject, addToDo, addProject, remove, findToDo, updateToDo, findProject};
 })();
 
 
