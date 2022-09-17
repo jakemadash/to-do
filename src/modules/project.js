@@ -1,10 +1,9 @@
 import {ToDo} from './todo.js';
 
 const Project = (() => {
-    const newProject = (title, description, due, priority) => {
-        const prototype = ToDo.newToDo(title, description, due, priority);
+    const newProject = (title, due) => {
         const ToDos = [];
-        return Object.assign({}, {ToDos}, prototype);
+        return {title, due, ToDos};
     };
     
     const defaultProject = {
@@ -33,13 +32,13 @@ const Project = (() => {
     };
 
     const addProject = () => {
-        const form = document.querySelector('form.project');
+        const form = document.querySelector('.project-form');
         const title = form.elements['title'].value;
-        const details = form.elements['details'].value;
         const due = form.elements['due-date'].value;
-        const priority = form.elements['priority'].value;
-        const todo = newToDo(title, details, due, priority);
-        return todo;
+        const project = newProject(title, due);
+        defaultProject.Projects.push(project);
+        console.log(defaultProject.Projects);
+        return project;
     }
 
     const removeFromDefault = (index) => {
