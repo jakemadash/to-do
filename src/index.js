@@ -1,7 +1,9 @@
 import {Project} from './modules/project.js';
 import {toDoDOM} from './modules/todoDOM.js';
+import {projectIndex} from './modules/project-index.js';
 
 toDoDOM.showForm();
+projectIndex.projectListeners();
 
 const form = document.querySelector('.todo-form');
 const add = document.querySelector('.todo-add');
@@ -11,6 +13,7 @@ formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
         const currentProject = Project.findProject();
         const toDo = Project.addToDo(currentProject);
+        console.log(currentProject.ToDos);
         const toDoBox = toDoDOM.addNew(toDo);
         const container = toDoBox.querySelector('.details-container');
         toDoBox.addEventListener('mouseover', () => {

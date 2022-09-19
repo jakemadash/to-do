@@ -34,6 +34,10 @@ const Project = (() => {
         return todo;
     };
 
+    const getToDos = (project) => {
+        return project.ToDos;
+    }
+
     const addProject = () => {
         const form = document.querySelector('.project-form');
         const title = form.elements['title'].value;
@@ -47,7 +51,7 @@ const Project = (() => {
         project.ToDos.splice(index, 1);
     }
 
-    return {newProject, addToDo, addProject, remove, findToDo, updateToDo, findProject};
+    return {newProject, addToDo, addProject, remove, findToDo, updateToDo, findProject, getToDos};
 })();
 
 

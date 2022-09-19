@@ -142,7 +142,11 @@ const toDoDOM = (() => {
         }
     }
 
-    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, findIndex, showToDos, hideToDos, updateToDo, ToDos};
+    const populateToDos = (project) => {
+        project.ToDos.forEach(ToDo => toDoDOM.addNew(ToDo));
+    }
+
+    return {showForm, hideForm, addNew, complete, displayDetails, populateForm, findIndex, showToDos, hideToDos, updateToDo, populateToDos, ToDos};
 })();
 
 export {toDoDOM};
