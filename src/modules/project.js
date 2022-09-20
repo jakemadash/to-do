@@ -18,6 +18,12 @@ const Project = (() => {
         return Projects[index];
     }
 
+    const findIndex = () => {
+        const header = document.querySelector('.project-header');
+        const index = Projects.findIndex((element) => element.title == header.textContent);
+        return index;
+    }
+
     const updateToDo = (project, index) => {
         const todo = project.ToDos[index];
         const form = document.querySelector('.todo-form');
@@ -47,11 +53,17 @@ const Project = (() => {
         return project;
     }
 
-    const remove = (project, index) => {
+    const removeToDo = (project, index) => {
         project.ToDos.splice(index, 1);
     }
 
-    return {newProject, addToDo, addProject, remove, findToDo, updateToDo, findProject, getToDos};
+    const removeProject = (index) => {
+        console.log(Projects[1]);
+        Projects.splice(index, 1);
+        console.log(Projects[1]);
+    }
+
+    return {newProject, addToDo, addProject, removeToDo, findToDo, updateToDo, findProject, getToDos, removeProject, findIndex};
 })();
 
 

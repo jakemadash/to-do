@@ -129,9 +129,16 @@ h5 {
 
 .project {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .project:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.project > img {
+    margin-left: 10px;
 }
