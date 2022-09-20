@@ -4,6 +4,48 @@ import {projectDOM} from './projectDOM.js';
 
 const projectIndex = (() => {
 
+    const populateToDos = (toDo) => {
+        const currentProject = Project.findProject();
+        const add = document.querySelector('.todo-add');
+        const formButtons = document.querySelectorAll('button.button');
+        const form = document.querySelector('.todo-form');
+
+        const toDoBox = toDoDOM.addNew(toDo);
+        const container = toDoBox.querySelector('.details-container');
+        toDoBox.addEventListener('mouseover', () => {
+            container.removeAttribute('hidden');
+        });
+        toDoBox.addEventListener('mouseout', () => {
+            container.setAttribute('hidden', '');
+        });
+        const removals = toDoBox.querySelectorAll('.remove');
+        removals.forEach(remove => remove.addEventListener('click', () => {
+            Project.remove(currentProject, toDoDOM.complete(remove));
+        }));
+        const edit = toDoBox.querySelector('.edit');
+        edit.addEventListener('click', () => {
+            const index = toDoDOM.findIndex(toDoBox);
+            const toDo = Project.findToDo(currentProject, index);
+            console.log(index, currentProject, toDo);
+            add.setAttribute('hidden', '');
+            const save = document.querySelector('button[hidden]')
+            save.removeAttribute('hidden')
+            formButtons[0].setAttribute('hidden', '');
+            form.removeAttribute('hidden');
+            toDoBox.setAttribute('hidden', '')
+            toDoDOM.hideToDos();
+            toDoDOM.populateForm(toDo);
+            save.addEventListener('click', () => {
+                Project.updateToDo(currentProject, index);
+                toDoDOM.updateToDo(toDo, toDoBox);
+                toDoDOM.hideForm();
+                add.removeAttribute('hidden');
+                save.setAttribute('hidden', '');
+                formButtons[0].removeAttribute('hidden');
+                }, {once : true});
+            });
+            }
+
     const projectListeners = () => {
         projectDOM.showForm();
 
@@ -16,8 +58,11 @@ const projectIndex = (() => {
             const currentProject = Project.findProject();
             console.log(currentProject.ToDos);
             const toDos = document.querySelectorAll('.todo');
-            toDos.forEach(toDo => toDo.remove());
-            currentProject.ToDos.forEach(ToDo => toDoDOM.addNew(ToDo));
+            toDos.forEach((toDo) => {
+                toDo.remove();
+                toDoDOM.complete(toDo);
+            });
+            currentProject.ToDos.forEach(ToDo => populateToDos(ToDo));
         });
 
         const add = document.querySelector('.project-add');
@@ -31,11 +76,14 @@ const projectIndex = (() => {
                     toDoDOM.hideForm();
                     header.textContent = project.title;
                     const toDos = document.querySelectorAll('.todo');
-                    toDos.forEach(toDo => toDo.remove());
+                    toDos.forEach((toDo) => {
+                        toDo.remove();
+                        toDoDOM.complete(toDo);
+                    });
                     const currentProject = Project.findProject();
                     const ToDos = Project.getToDos(currentProject);
                     console.log(ToDos);
-                    ToDos.forEach(ToDo => toDoDOM.addNew(ToDo));
+                    ToDos.forEach(ToDo => populateToDos(ToDo));
                 });
             }
             projectDOM.hideForm();
@@ -43,7 +91,7 @@ const projectIndex = (() => {
         }));
         }
 
-    return {projectListeners};
+    return {projectListeners, populateToDos};
 })();
 
 export {projectIndex};

@@ -134,6 +134,7 @@ const toDoDOM = (() => {
     }
 
     const populateForm = (toDo) => {
+        console.log(toDo);
         form.removeAttribute('hidden');
         const fields = form.querySelectorAll('input');
         const values = Object.values(toDo);
