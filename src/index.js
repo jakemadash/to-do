@@ -7,7 +7,6 @@ for (let i = 1; i < Project.Projects.length; i++) {
     }
     
 const main = Project.Projects[0];
-console.log(main);
 main.ToDos.forEach(toDo => projectIndex.populateToDos(toDo));
 
 toDoDOM.showForm();
@@ -20,7 +19,6 @@ formButtons.forEach(button => button.addEventListener('click', () => {
     if (button.textContent == 'Submit') {
         const currentProject = Project.findProject();
         const toDo = Project.addToDo(currentProject);
-        console.log(currentProject.ToDos);
         projectIndex.populateToDos(toDo);
     }
     toDoDOM.hideForm();

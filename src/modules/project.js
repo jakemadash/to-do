@@ -65,12 +65,8 @@ const Project = (() => {
     }
 
     const removeProject = (index) => {
-        console.log(Projects[0], Projects[1]);
         Projects.splice(index, 1);
-        console.log(Projects[0], Projects[1]);
-        console.log(JSON.parse(localStorage.getItem('projects')));
         store();
-        console.log(JSON.parse(localStorage.getItem('projects')));
     }
 
     return {Projects, newProject, addToDo, addProject, removeToDo, findToDo, updateToDo, findProject, getToDos, removeProject, findIndex, store};

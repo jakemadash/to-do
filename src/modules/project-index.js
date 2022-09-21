@@ -26,7 +26,6 @@ const projectIndex = (() => {
         edit.addEventListener('click', () => {
             const index = toDoDOM.findIndex(toDoBox);
             const toDo = Project.findToDo(currentProject, index);
-            console.log(index, currentProject, toDo);
             add.setAttribute('hidden', '');
             const save = document.querySelector('button[hidden]')
             save.removeAttribute('hidden')
@@ -64,7 +63,6 @@ const projectIndex = (() => {
             });
             const currentProject = Project.findProject();
             const ToDos = Project.getToDos(currentProject);
-            console.log(ToDos);
             ToDos.forEach(ToDo => populateToDos(ToDo));
             });
             const removal = projectContainer.querySelector('h5 + img');
@@ -91,7 +89,6 @@ const projectIndex = (() => {
             const dueDate = document.querySelector('h5.project-header');
             dueDate.setAttribute('hidden', '');
             const currentProject = Project.findProject();
-            console.log(currentProject.ToDos);
             const toDos = document.querySelectorAll('.todo');
             toDos.forEach((toDo) => {
                 toDoDOM.complete(toDo);

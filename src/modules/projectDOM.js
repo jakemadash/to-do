@@ -12,7 +12,7 @@ const projectDOM = (() => {
     const showProjects = () => {
         Projects.forEach(Project => Project.removeAttribute('hidden'));
     }
-
+   
     const hideProjects = () => {
         Projects.forEach(Project => Project.setAttribute('hidden', ''));
     }
