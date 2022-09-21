@@ -53,7 +53,7 @@ const projectIndex = (() => {
         projectBox.addEventListener('click', () => {
             toDoDOM.hideForm();
             header.textContent = project.title;
-            const dueDate = document.querySelector('h5.project-header');
+            const dueDate = document.querySelector('.project-due');
             if (project.due != undefined) {
                 dueDate.textContent = `Due: ${project.due}`;
                 dueDate.removeAttribute('hidden');
@@ -67,7 +67,7 @@ const projectIndex = (() => {
             console.log(ToDos);
             ToDos.forEach(ToDo => populateToDos(ToDo));
             });
-            const removal = document.querySelector('h5 + img');
+            const removal = projectContainer.querySelector('h5 + img');
             removal.addEventListener('click', () => {
                 const index = Project.findIndex(project);
                 Project.removeProject(index);

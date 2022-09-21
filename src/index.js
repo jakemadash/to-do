@@ -2,15 +2,12 @@ import {Project} from './modules/project.js';
 import {toDoDOM} from './modules/todoDOM.js';
 import {projectIndex} from './modules/project-index.js';
 
-// Project.store();
-
-console.log(Project.Projects);
-
 for (let i = 1; i < Project.Projects.length; i++) {
         projectIndex.populateProjects(Project.Projects[i]);
     }
     
-const main = Project.findProject();
+const main = Project.Projects[0];
+console.log(main);
 main.ToDos.forEach(toDo => projectIndex.populateToDos(toDo));
 
 toDoDOM.showForm();

@@ -113,7 +113,7 @@ h5 {
     background-color: rgb(220, 220, 108);
 }
 
-.project-header {
+.project-header, .project-due {
     color: gray;
 }
 

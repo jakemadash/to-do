@@ -6,7 +6,7 @@ const Project = (() => {
         return {title, due, ToDos};
     };
     
-    let Projects = [{title: 'Main', due: '', ToDos: []}];
+    let Projects = JSON.parse(localStorage.getItem('projects')) || [{title: 'Main', due: '', ToDos: []}];
 
     const findToDo = (project, index) => {
         return project.ToDos[index];
@@ -18,9 +18,8 @@ const Project = (() => {
         return Projects[index];
     }
 
-    const findIndex = () => {
-        const header = document.querySelector('.project-header');
-        const index = Projects.findIndex((element) => element.title == header.textContent);
+    const findIndex = (project) => {
+        const index = Projects.findIndex((element) => element.title == project.title);
         return index;
     }
 
@@ -43,14 +42,7 @@ const Project = (() => {
     };
 
     const store = () => {
-        localStorage.setItem('projects', JSON.stringify([{title: 'Main', due: '', ToDos: []}]));
-        Projects = JSON.parse(localStorage.getItem('projects'));
-        console.log(parsed);
-        Projects = parsed;
-    }
-
-    const restore = () => {
-        Projects = parsed;
+        localStorage.setItem('projects', JSON.stringify(Projects));
     }
 
     const getToDos = (project) => {
@@ -73,13 +65,15 @@ const Project = (() => {
     }
 
     const removeProject = (index) => {
-        console.log(Projects[1]);
+        console.log(Projects[0], Projects[1]);
         Projects.splice(index, 1);
-        console.log(Projects[1]);
+        console.log(Projects[0], Projects[1]);
+        console.log(JSON.parse(localStorage.getItem('projects')));
         store();
+        console.log(JSON.parse(localStorage.getItem('projects')));
     }
 
-    return {Projects, newProject, addToDo, addProject, removeToDo, findToDo, updateToDo, findProject, getToDos, removeProject, findIndex, store, restore};
+    return {Projects, newProject, addToDo, addProject, removeToDo, findToDo, updateToDo, findProject, getToDos, removeProject, findIndex, store};
 })();
 
 
