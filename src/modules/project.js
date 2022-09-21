@@ -6,7 +6,7 @@ const Project = (() => {
         return {title, due, ToDos};
     };
     
-    const Projects = [{title: 'Main', due: '', ToDos: []}];
+    let Projects = [{title: 'Main', due: '', ToDos: []}];
 
     const findToDo = (project, index) => {
         return project.ToDos[index];
@@ -31,14 +31,27 @@ const Project = (() => {
         todo.details = form.elements['details'].value;
         todo.due = form.elements['due-date'].value;
         todo.priority = form.elements['priority'].value;
+        store();
         return todo;
     }
     
     const addToDo = (project) => {
         const todo = ToDo.addToDo();
         project.ToDos.push(todo);
+        store();
         return todo;
     };
+
+    const store = () => {
+        localStorage.setItem('projects', JSON.stringify([{title: 'Main', due: '', ToDos: []}]));
+        Projects = JSON.parse(localStorage.getItem('projects'));
+        console.log(parsed);
+        Projects = parsed;
+    }
+
+    const restore = () => {
+        Projects = parsed;
+    }
 
     const getToDos = (project) => {
         return project.ToDos;
@@ -50,20 +63,23 @@ const Project = (() => {
         const due = form.elements['due-date'].value;
         const project = newProject(title, due);
         Projects.push(project);
+        store();
         return project;
     }
 
     const removeToDo = (project, index) => {
         project.ToDos.splice(index, 1);
+        store();
     }
 
     const removeProject = (index) => {
         console.log(Projects[1]);
         Projects.splice(index, 1);
         console.log(Projects[1]);
+        store();
     }
 
-    return {newProject, addToDo, addProject, removeToDo, findToDo, updateToDo, findProject, getToDos, removeProject, findIndex};
+    return {Projects, newProject, addToDo, addProject, removeToDo, findToDo, updateToDo, findProject, getToDos, removeProject, findIndex, store, restore};
 })();
 
 

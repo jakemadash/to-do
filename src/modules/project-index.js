@@ -46,6 +46,39 @@ const projectIndex = (() => {
             });
             }
 
+    const populateProjects = (project) => {
+        const header = document.querySelector('.project-header');
+        const projectBox = projectDOM.addNew(project);
+        const projectContainer = projectBox.parentElement;
+        projectBox.addEventListener('click', () => {
+            toDoDOM.hideForm();
+            header.textContent = project.title;
+            const dueDate = document.querySelector('h5.project-header');
+            if (project.due != undefined) {
+                dueDate.textContent = `Due: ${project.due}`;
+                dueDate.removeAttribute('hidden');
+            }
+            const toDos = document.querySelectorAll('.todo');
+            toDos.forEach((toDo) => {
+                toDoDOM.complete(toDo);
+            });
+            const currentProject = Project.findProject();
+            const ToDos = Project.getToDos(currentProject);
+            console.log(ToDos);
+            ToDos.forEach(ToDo => populateToDos(ToDo));
+            });
+            const removal = document.querySelector('h5 + img');
+            removal.addEventListener('click', () => {
+                const index = Project.findIndex(project);
+                Project.removeProject(index);
+                projectDOM.complete(projectContainer, index);
+                const toDos = document.querySelectorAll('.todo');
+                toDos.forEach((toDo) => {
+                    toDoDOM.complete(toDo);
+                });
+            });
+    }
+
     const projectListeners = () => {
         projectDOM.showForm();
 
@@ -61,7 +94,6 @@ const projectIndex = (() => {
             console.log(currentProject.ToDos);
             const toDos = document.querySelectorAll('.todo');
             toDos.forEach((toDo) => {
-                toDo.removeToDo();
                 toDoDOM.complete(toDo);
             });
             currentProject.ToDos.forEach(ToDo => populateToDos(ToDo));
@@ -73,43 +105,14 @@ const projectIndex = (() => {
         formButtons.forEach(button => button.addEventListener('click', () => {
             if (button.textContent == 'Submit') {
                 const project = Project.addProject();
-                const projectBox = projectDOM.addNew(project);
-                const projectContainer = projectBox.parentElement;
-                projectBox.addEventListener('click', () => {
-                    toDoDOM.hideForm();
-                    header.textContent = project.title;
-                    const dueDate = document.querySelector('h5.project-header');
-                    if (project.due != undefined) {
-                        dueDate.textContent = `Due: ${project.due}`;
-                        dueDate.removeAttribute('hidden');
-                    }
-                    const toDos = document.querySelectorAll('.todo');
-                    toDos.forEach((toDo) => {
-                        toDo.removeToDo();
-                        toDoDOM.complete(toDo);
-                    });
-                    const currentProject = Project.findProject();
-                    const ToDos = Project.getToDos(currentProject);
-                    console.log(ToDos);
-                    ToDos.forEach(ToDo => populateToDos(ToDo));
-                    });
-                    const removal = document.querySelector('h5 + img');
-                    removal.addEventListener('click', () => {
-                        const index = Project.findIndex(project);
-                        Project.removeProject(index);
-                        projectDOM.complete(projectContainer, index);
-                        const toDos = document.querySelectorAll('.todo');
-                        toDos.forEach((toDo) => {
-                            toDoDOM.complete(toDo);
-                        });
-                    });
+                populateProjects(project);
             }
             projectDOM.hideForm();
             add.removeAttribute('hidden');
         }));
         }
 
-    return {projectListeners, populateToDos};
+    return {projectListeners, populateToDos, populateProjects};
 })();
 
 export {projectIndex};
